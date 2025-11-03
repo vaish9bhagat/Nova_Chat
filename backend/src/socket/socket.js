@@ -14,7 +14,7 @@ const socketserver = async (httpServer) => {
 
     const io = new Server(httpServer, {
         cors: {
-            origin: "http://localhost:5173",
+            origin: ["http://localhost:5173", "https://novachat-tclo.onrender.com"],
             methods: ["GET", "POST"],
             credentials: true
         }
