@@ -23,33 +23,23 @@ const Signin = () => {
     password: data.password,
   };
 
-  const API_URL = "https://novachat-tclo.onrender.com/auth/register";
-
   try {
-    const res = await axios.post(API_URL, modData, { withCredentials: true });
+    const res = await axios.post(
+      "https://novachat-tclo.onrender.com/auth/register",
+      modData,
+      { withCredentials: true }
+    );
+
+    console.log("Signup success:", res.status);
 
     
-    if (res.status === 200) {
-      console.log("Signup successful", res.data);
-      navigate("/home");
-    } else {
-      console.log("Unexpected response", res);
-    }
-  } catch (error) {
-   
-    if (error.response) {
-      
-      console.log("Server error:", error.response.data, error.response.status);
-    } else if (error.request) {
-      
-      console.log("Network error or no response:", error.request);
-    } else {
-      console.log("Other error:", error.message);
-    }
-  }
+    navigate("/home");
 
-  reset();
+  } catch (err) {
+    console.error("Signup failed:", err);
+  }
 };
+
 
   return (
     <div className="w-full h-screen bg-[#020018] flex justify-center items-center text-white">
