@@ -33,7 +33,8 @@ const Signin = () => {
     console.log("Signup success:", res.status);
 
     
-    navigate("/home");
+   window.location.href = "/home";
+
 
   } catch (err) {
     console.error("Signup failed:", err);
