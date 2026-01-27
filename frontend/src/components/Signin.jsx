@@ -13,32 +13,44 @@ const Signin = () => {
     formState: { errors },
   } = useForm();
 
-  const signHandler = async (data) => {
-    const modData = {
-      email: data.email,
-      fullname: {
-        firstname: data.firstname,
-        lastname: data.lastname,
-      },
-      password: data.password,
-    };
-    const API_URL = "https://novachat-tclo.onrender.com/auth/register";
-    try {
-      const API = axios
-        .post(API_URL, modData, { withCredentials: true })
-        .then((res) => {
-          if (res.status === 200) {
-            navigate("/home");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-    reset();
+ const signHandler = async (data) => {
+  const modData = {
+    email: data.email,
+    fullname: {
+      firstname: data.firstname,
+      lastname: data.lastname,
+    },
+    password: data.password,
   };
+
+  const API_URL = "https://novachat-tclo.onrender.com/auth/register";
+
+  try {
+    const res = await axios.post(API_URL, modData, { withCredentials: true });
+
+    
+    if (res.status === 200) {
+      console.log("Signup successful", res.data);
+      navigate("/home");
+    } else {
+      console.log("Unexpected response", res);
+    }
+  } catch (error) {
+   
+    if (error.response) {
+      
+      console.log("Server error:", error.response.data, error.response.status);
+    } else if (error.request) {
+      
+      console.log("Network error or no response:", error.request);
+    } else {
+      console.log("Other error:", error.message);
+    }
+  }
+
+  reset();
+};
+
   return (
     <div className="w-full h-screen bg-[#020018] flex justify-center items-center text-white">
       <div className="rounded py-4 px-8 bg-[#28263B] shadow-lg">
