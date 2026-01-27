@@ -22,18 +22,13 @@ const Signin = () => {
       },
       password: data.password,
     };
-
+    const API_URL = "https://novachat-tclo.onrender.com/auth/register";
     try {
-      const res = await axios.post(
-        "https://novachat-tclo.onrender.com/auth/register",
-        modData,
-        { withCredentials: true },
-      );
+      const res = await axios.post(API_URL, modData, { withCredentials: true });
 
-      console.log("Signup success:", res.status);
-
-      if (res.status === 200) {
-        navigate("/login");
+      if (res.status === 200 && res.data?.token) {
+        localStorage.setItem("token", res.data?.token);
+        navigate("/home");
       }
     } catch (err) {
       console.error("Signup failed:", err);
