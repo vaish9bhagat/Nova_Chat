@@ -13,34 +13,32 @@ const Signin = () => {
     formState: { errors },
   } = useForm();
 
- const signHandler = async (data) => {
-  const modData = {
-    email: data.email,
-    fullname: {
-      firstname: data.firstname,
-      lastname: data.lastname,
-    },
-    password: data.password,
+  const signHandler = async (data) => {
+    const modData = {
+      email: data.email,
+      fullname: {
+        firstname: data.firstname,
+        lastname: data.lastname,
+      },
+      password: data.password,
+    };
+
+    try {
+      const res = await axios.post(
+        "https://novachat-tclo.onrender.com/auth/register",
+        modData,
+        { withCredentials: true },
+      );
+
+      console.log("Signup success:", res.status);
+
+      if (res.status === 200) {
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error("Signup failed:", err);
+    }
   };
-
-  try {
-    const res = await axios.post(
-      "https://novachat-tclo.onrender.com/auth/register",
-      modData,
-      { withCredentials: true }
-    );
-
-    console.log("Signup success:", res.status);
-
-    
-   window.location.href = "/home";
-
-
-  } catch (err) {
-    console.error("Signup failed:", err);
-  }
-};
-
 
   return (
     <div className="w-full h-screen bg-[#020018] flex justify-center items-center text-white">
