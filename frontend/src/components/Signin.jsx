@@ -40,7 +40,7 @@ const Signin = () => {
         <form
           onSubmit={handleSubmit(signHandler)}
           className="flex items-center justify-center flex-col gap-4"
-          action=" "
+          
         >
           <h1 className="text-2xl font-bold text-[#BE86FF]">Sign Up</h1>
 
