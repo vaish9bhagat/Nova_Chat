@@ -26,8 +26,7 @@ const Signin = () => {
     try {
       const res = await axios.post(API_URL, modData, { withCredentials: true });
 
-      if (res.status === 200 && res.data?.token) {
-        localStorage.setItem("token", res.data?.token);
+      if (res.status === 200) {
         navigate("/home");
       }
     } catch (err) {

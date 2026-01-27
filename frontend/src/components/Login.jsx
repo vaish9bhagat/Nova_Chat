@@ -21,8 +21,7 @@ const Login = () => {
     const API_URL = "https://novachat-tclo.onrender.com/auth/login";
     try {
       const res = await axios.post(API_URL, modData, { withCredentials: true });
-      if (res.status === 200 && res.data?.token) {
-        localStorage.setItem("token", res.data?.token);
+      if (res.status === 200) {
         navigate("/home");
       }
     } catch (error) {
