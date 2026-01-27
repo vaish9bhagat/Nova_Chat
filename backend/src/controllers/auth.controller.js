@@ -7,13 +7,13 @@ const registerController = async (req, res) => {
 
     const userExists = await usermodel.findOne({ email });
 
-    
+
 
     if (userExists) {
         return res.status(400).json({
             message: "user already exists"
         })
-        
+
     }
 
     const hashedpassword = await bcrypt.hashSync(password, 10);
@@ -36,15 +36,12 @@ const registerController = async (req, res) => {
         sameSite: "none"
     });
 
-    
+
     res.status(200).json({
         message: "new user registered in successfully",
-        user: {
-            user,
-            token: token
-        }
+
     })
-    
+
 
 
 
