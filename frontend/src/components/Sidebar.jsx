@@ -26,7 +26,7 @@ const Sidebar = forwardRef((props, ref) => {
     }
   };
   useEffect(() => {
-    getAllChats();
+    //getAllChats();
   }, []);
 
   const chatDeleteHandler = async (chatId) => {
