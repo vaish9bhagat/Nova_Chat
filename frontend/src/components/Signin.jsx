@@ -25,9 +25,8 @@ const Signin = () => {
     const API_URL = "https://novachat-tclo.onrender.com/auth/register";
     try {
       const res = await axios.post(API_URL, modData, { withCredentials: true });
-
       if (res.status === 200) {
-        navigate("/home");
+        setTimeout(() => navigate("/home"), 300);
       }
     } catch (err) {
       console.error("Signup failed:", err);
@@ -40,7 +39,6 @@ const Signin = () => {
         <form
           onSubmit={handleSubmit(signHandler)}
           className="flex items-center justify-center flex-col gap-4"
-          
         >
           <h1 className="text-2xl font-bold text-[#BE86FF]">Sign Up</h1>
 
