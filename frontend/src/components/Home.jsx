@@ -101,7 +101,7 @@ const Home = () => {
   }, [activeChatId]);
 
   useEffect(() => {
-   
+   getAllChats()
     const server = io("https://novachat-tclo.onrender.com", {
       withCredentials: true,
     });

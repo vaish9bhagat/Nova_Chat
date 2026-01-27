@@ -26,7 +26,7 @@ const Signin = () => {
     try {
       const res = await axios.post(API_URL, modData, { withCredentials: true });
       if (res.status === 200) {
-        setTimeout(() => navigate("/home"), 300);
+        window.location.replace("/home");
       }
     } catch (err) {
       console.error("Signup failed:", err);
