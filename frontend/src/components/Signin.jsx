@@ -24,11 +24,10 @@ const Signin = () => {
     };
     const API_URL = "https://novachat-tclo.onrender.com/auth/register";
     try {
-      const API = await axios
+      const API = axios
         .post(API_URL, modData, { withCredentials: true })
         .then((res) => {
-          if (res.status === "200" && res.data?.token) {
-            localStorage.setItem("token", res.data?.token);
+          if (res.status === 200) {
             navigate("/home");
           }
         })

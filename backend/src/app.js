@@ -9,10 +9,29 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../public")))
-app.use(cors({
-    origin: ['http://localhost:5173', 'https://novachat-tclo.onrender.com'],
+
+
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://novachat-tclo.onrender.com"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow Postman
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true
-}))
+  })
+);
+
+
 app.use("/auth", authRoutes);
 app.use("/", chatRoutes);
 
