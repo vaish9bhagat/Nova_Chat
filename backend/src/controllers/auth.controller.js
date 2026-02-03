@@ -79,7 +79,17 @@ const loginController = async (req, res) => {
 
 }
 
+const logOutHandler = async (req, res) => {
+    res.clearCookie("token")
+
+    res.status(201).json({
+        message: "user logged Out successfully"
+    })
+
+}
+
 module.exports = {
     registerController,
-    loginController
+    loginController,
+    logOutHandler
 }

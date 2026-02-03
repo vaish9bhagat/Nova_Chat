@@ -1,5 +1,6 @@
 import React from "react";
 import Chathead from "./Chathead";
+import ReactMarkdown from "react-markdown";
 import { io } from "socket.io-client";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
@@ -38,14 +39,14 @@ const Home = () => {
     if (chats.chats.length > 0 && chatId) {
       try {
         const response = await axios.get(
-          `https://novachat-tclo.onrender.com/messages/${chatId}`,
-          { withCredentials: true }
+          `${import.meta.env.VITE_BACKEND_URL}/messages/${chatId}`,
+          { withCredentials: true },
         );
         setmessages(
           response.data.messages.map((m) => ({
             type: m.role === "user" ? "user" : "ai",
             content: m.content,
-          }))
+          })),
         );
         setTimeout(scrollToBottom, 0);
       } catch (error) {
@@ -59,11 +60,11 @@ const Home = () => {
     if (!title) return;
     try {
       const response = await axios.post(
-        "https://novachat-tclo.onrender.com/chat",
+        ` ${import.meta.env.VITE_BACKEND_URL}/chat`,
         { title },
         {
           withCredentials: true,
-        }
+        },
       );
       if (response.data.chat) {
         dispatch(newChat(response.data.chat));
@@ -77,10 +78,10 @@ const Home = () => {
   const getAllChats = async () => {
     try {
       var response = await axios.get(
-        "https://novachat-tclo.onrender.com/getchats",
+        `${import.meta.env.VITE_BACKEND_URL}/getchats`,
         {
           withCredentials: true,
-        }
+        },
       );
       dispatch(setChats(response.data.chats.reverse()));
       dispatch(selectChat(response?.data?.chats[0]?._id));
@@ -101,8 +102,8 @@ const Home = () => {
   }, [activeChatId]);
 
   useEffect(() => {
-   getAllChats()
-    const server = io("https://novachat-tclo.onrender.com", {
+    getAllChats();
+    const server = io(`${import.meta.env.VITE_BACKEND_URL}`, {
       withCredentials: true,
     });
     setsocket(server);
@@ -184,7 +185,7 @@ const Home = () => {
                   : `bg-[#560FAB] rounded-t-xl rounded-br-xl p-6 md:p-3 max-w-[80%]  text-white py-3 md:py-1.5 flex items-center justify-center`
               }
             >
-              {message.content}
+               {message.content}
             </span>
             <h1 className="text-[#BE86FF] text-sm">
               {message.type === "user" ? "user" : "NovaChat"}

@@ -22,11 +22,11 @@ const Signin = () => {
       },
       password: data.password,
     };
-    const API_URL = "https://novachat-tclo.onrender.com/auth/register";
+    const API_URL = `${import.meta.env.VITE_BACKEND_URL}/auth/register`;
     try {
       const res = await axios.post(API_URL, modData, { withCredentials: true });
       if (res.status === 200) {
-        window.location.replace("/home");
+        navigate("/home");
       }
     } catch (err) {
       console.error("Signup failed:", err);
@@ -74,7 +74,7 @@ const Signin = () => {
             {" "}
             <input
               {...register("email", { required: true })}
-              className="outline-0  px-1  bg-transparent rounded-bl-md rounded-tr-md  border-[#570DAD] border-2"
+              className="outline-0  px-1  bg-transparent rounded-bl-md rounded-tr-md  border-[#570DAD] border-2 focus:bg-transparent"
               type="email"
               id=""
               placeholder="enter email"

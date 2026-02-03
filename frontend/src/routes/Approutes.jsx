@@ -1,9 +1,9 @@
 import React from "react";
+import { lazy } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
-import Signin from "../components/Signin";
-import Login from "../components/Login";
-import Home from "../components/Home";
-
+const Signin = lazy(() => import("../components/Signin"));
+const Login = lazy(() => import("../components/Login"));
+const Home = lazy(() => import("../components/Home"));
 
 const Approutes = () => {
   return (

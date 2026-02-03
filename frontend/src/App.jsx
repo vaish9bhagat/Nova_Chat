@@ -10,9 +10,12 @@ const App = () => {
   const dispatch = useDispatch();
   const getAllChats = async () => {
     try {
-      var response = await axios.get("https://novachat-tclo.onrender.com/getchats", {
-        withCredentials: true,
-      });
+      var response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/getchats`,
+        {
+          withCredentials: true,
+        },
+      );
       dispatch(setChats(response.data.chats.reverse()));
     } catch (error) {
       console.log(error);

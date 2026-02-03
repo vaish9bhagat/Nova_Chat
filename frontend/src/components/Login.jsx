@@ -18,7 +18,7 @@ const Login = () => {
       email: data.email,
       password: data.password,
     };
-    const API_URL = "https://novachat-tclo.onrender.com/auth/login";
+    const API_URL = `${import.meta.env.VITE_BACKEND_URL}/auth/login`;
     try {
       const res = await axios.post(API_URL, modData, { withCredentials: true });
       if (res.status === 200) {
