@@ -39,7 +39,7 @@ const Home = () => {
     if (chats.chats.length > 0 && chatId) {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/messages/${chatId}`,
+          `https://nova-chat-wn7c.onrender.com/messages/${chatId}`,
           { withCredentials: true },
         );
         setmessages(
@@ -60,7 +60,7 @@ const Home = () => {
     if (!title) return;
     try {
       const response = await axios.post(
-        ` ${import.meta.env.VITE_BACKEND_URL}/chat`,
+        ` https://nova-chat-wn7c.onrender.com/chat`,
         { title },
         {
           withCredentials: true,
@@ -78,7 +78,7 @@ const Home = () => {
   const getAllChats = async () => {
     try {
       var response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/getchats`,
+        `https://nova-chat-wn7c.onrender.com/getchats`,
         {
           withCredentials: true,
         },
@@ -103,7 +103,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllChats();
-    const server = io(`${import.meta.env.VITE_BACKEND_URL}`, {
+    const server = io(`https://nova-chat-wn7c.onrender.com`, {
       withCredentials: true,
     });
     setsocket(server);

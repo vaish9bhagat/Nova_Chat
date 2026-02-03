@@ -20,7 +20,7 @@ const Sidebar = forwardRef((props, ref) => {
   const getAllChats = async () => {
     try {
       var response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/getchats`,
+        `https://nova-chat-wn7c.onrender.com/getchats`,
         {
           withCredentials: true,
         },
@@ -37,7 +37,7 @@ const Sidebar = forwardRef((props, ref) => {
   const chatDeleteHandler = async (chatId) => {
     try {
       const res = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/deletechat/${chatId}`,
+        `https://nova-chat-wn7c.onrender.com/deletechat/${chatId}`,
         { withCredentials: true },
       );
       dispatch(setChats(res.data.chats.reverse()));
@@ -49,7 +49,7 @@ const Sidebar = forwardRef((props, ref) => {
   const logOut = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/auth/logout`,
+        `https://nova-chat-wn7c.onrender.com/auth/logout`,
       );
       if (res.status == 201) {
         navigate("/");

@@ -22,7 +22,7 @@ const Signin = () => {
       },
       password: data.password,
     };
-    const API_URL = `${import.meta.env.VITE_BACKEND_URL}/auth/register`;
+    const API_URL = `https://nova-chat-wn7c.onrender.com/auth/register`;
     try {
       const res = await axios.post(API_URL, modData, { withCredentials: true });
       if (res.status === 200) {

@@ -11,7 +11,7 @@ const App = () => {
   const getAllChats = async () => {
     try {
       var response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/getchats`,
+        `https://nova-chat-wn7c.onrender.com/getchats`,
         {
           withCredentials: true,
         },
